@@ -7,8 +7,8 @@ if(burger){
   burger.addEventListener('click', ()=>{
     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
     navLinks.style.position='absolute'; navLinks.style.top='100%'; navLinks.style.left='0';
-    navLinks.style.width='100%'; navLinks.style.background='rgba(0,42,84,.97)';
-    navLinks.style.flexDirection='column'; navLinks.style.padding='1rem 1.5rem';
+    navLinks.style.width='100%'; navLinks.style.background='rgba(10,12,16,.97)';
+    navLinks.style.flexDirection='column'; navLinks.style.padding='1rem 1.5rem'; navLinks.style.gap='1rem';
   });
 }
 
@@ -357,6 +357,6 @@ $('#geoBtn')?.addEventListener('click', ()=>{
 
 window.addEventListener('scroll', ()=>{
   const nav = $('#navbar');
-  if(window.scrollY > 40) nav.style.boxShadow = '0 8px 24px rgba(0,0,0,.25)';
+  if(window.scrollY > 40) nav.style.boxShadow = '0 8px 24px rgba(0,0,0,.45)';
   else nav.style.boxShadow = 'none';
 });
