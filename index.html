@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AD Carrosserie — Devis Express Gratuit, 0€ d'Avance de Frais</title>
-<meta name="description" content="AD Carrosserie : réparation carrosserie & peinture agréée toutes assurances. 0€ d'avance de frais, garantie à vie, véhicule de prêt gratuit. Devis express en 2 minutes.">
+<meta name="description" content="AD Carrosserie : atelier de carrosserie et peinture agréé toutes assurances. 0€ d'avance de frais, garantie à vie, véhicule de prêt gratuit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,20 +14,16 @@
 <header class="navbar" id="navbar">
   <div class="nav-container">
     <a href="#top" class="logo">
-      <span class="logo-ad">AD</span><span class="logo-name">Carrosserie</span>
+      <span class="logo-mark">AD</span><span class="logo-name">CARROSSERIE</span>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#services">Services</a>
+      <a href="#atelier">Atelier</a>
       <a href="#estimateur">Estimateur 3D</a>
       <a href="#franchise">Franchise 0€</a>
       <a href="#realisations">Réalisations</a>
       <a href="#rdv">RDV En Ligne</a>
     </nav>
-    <div class="nav-badges">
-      <span class="badge-pill">🛡️ Garantie à Vie AD</span>
-      <span class="badge-pill">✅ Agréé Toutes Assurances</span>
-    </div>
-    <a href="#rdv" class="btn btn-primary btn-shine nav-cta">Devis Express Gratuit</a>
+    <a href="#rdv" class="btn btn-primary nav-cta">Devis Express Gratuit</a>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
   </div>
 </header>
@@ -40,19 +36,22 @@
 </div>
 
 <section class="hero" id="top">
-  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+  <img class="hero-bg" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=70" alt="Atelier carrosserie AD">
+  <div class="hero-scrim"></div>
   <div class="hero-content">
-    <h1 class="reveal">Votre Carrosserie à <span class="text-red">Votre Ville</span>.<br>0&nbsp;€ d'Avance de Frais &amp; Garantie à Vie sur vos Réparations.</h1>
-    <p class="hero-sub reveal">Conformément à la <strong>Loi Hamon</strong>, choisissez votre carrossier AD sans perdre vos garanties d'assurance. Nous prenons en charge votre franchise !</p>
+    <div class="eyebrow reveal"><span class="eyebrow-bar"></span>ATELIER AGRÉÉ · TOUTES ASSURANCES</div>
+    <h1 class="reveal">CARROSSERIE.<br>PEINTURE.<br><span class="text-accent">RÉPARATION.</span></h1>
+    <p class="hero-sub reveal">Atelier de réparation complet. Prise en charge assurance, franchise remboursée, véhicule de prêt gratuit — sans avance de frais.</p>
     <div class="hero-cta-group reveal">
-      <a href="#franchise" class="btn btn-primary btn-glow">Calculer ma Franchise Remboursée</a>
-      <button class="btn btn-outline" id="openPhotoDrawer">📸 Envoyer mes photos de dégâts</button>
+      <a href="#franchise" class="btn btn-primary">Calculer ma Franchise</a>
+      <button class="btn btn-outline" id="openPhotoDrawer">📸 Envoyer mes Photos</button>
     </div>
     <div class="trust-strip reveal">
-      <div class="trust-badge"><span class="counter" data-target="4.9" data-decimal="1">0</span>/5 <small>⭐ Avis Google</small></div>
-      <div class="trust-badge">🛡️ <small>Garantie à Vie AD</small></div>
-      <div class="trust-badge"><span class="counter" data-target="0">0</span>€ <small>Avance de Frais</small></div>
-      <div class="trust-badge">🔑 <small>Véhicule de Prêt Gratuit</small></div>
+      <div class="trust-badge"><span class="counter" data-target="0">0</span>€<small>Avance de Frais</small></div>
+      <div class="trust-badge">∞<small>Garantie à Vie</small></div>
+      <div class="trust-badge">100%<small>Prise en Charge Possible</small></div>
+      <div class="trust-badge">🔑<small>Véhicule de Prêt</small></div>
     </div>
   </div>
 </section>
@@ -71,11 +70,45 @@
   </div>
 </div>
 
+<section class="section" id="atelier">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>NOS SERVICES</span>
+    <h2>Atelier de Réparation</h2>
+    <p>Solutions professionnelles pour chaque véhicule. Diagnostic, peinture, restauration — tout sous un même toit.</p>
+  </div>
+  <div class="service-grid reveal">
+    <a href="#estimateur" class="service-card">
+      <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=60" alt="Estimateur de dégâts">
+      <div class="service-card-body">
+        <h3>Estimateur 3D</h3>
+        <p>Sélectionnez la zone endommagée sur le véhicule, obtenez un pré-diagnostic instantané et gratuit.</p>
+        <span class="service-link">Faire mon diagnostic →</span>
+      </div>
+    </a>
+    <a href="#franchise" class="service-card">
+      <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=60" alt="Franchise 0 euro">
+      <div class="service-card-body">
+        <h3>Franchise 0€</h3>
+        <p>Conformément à la Loi Hamon, nous prenons en charge votre franchise. Reste à charge : 0,00 €.</p>
+        <span class="service-link">Simuler ma franchise →</span>
+      </div>
+    </a>
+    <a href="#realisations" class="service-card">
+      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=60" alt="Réalisations">
+      <div class="service-card-body">
+        <h3>Réalisations</h3>
+        <p>Tôlerie, peinture, débosselage sans peinture, pare-brise — garantis à vie sur main d'œuvre et peinture.</p>
+        <span class="service-link">Voir avant / après →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
 <section class="section" id="estimateur">
-  <div class="section-header reveal">
-    <span class="tag">Estimateur 3D — 100% Gratuit</span>
-    <h2>Sélectionnez la zone endommagée</h2>
-    <p>Cliquez sur votre véhicule pour un pré-diagnostic instantané, sans engagement.</p>
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>PRÉ-DIAGNOSTIC GRATUIT</span>
+    <h2>Sélectionnez la Zone Endommagée</h2>
+    <p>Cliquez sur le véhicule pour un pré-diagnostic instantané, sans engagement.</p>
   </div>
 
   <div class="vehicle-toggle reveal">
@@ -89,9 +122,9 @@
     <div class="svg-wrap">
       <svg id="carSvg" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
         <rect x="0" y="0" width="600" height="260" fill="transparent"/>
-        <path class="car-outline" d="M40,180 C40,140 70,120 110,110 L150,80 C170,65 230,55 300,55 C370,55 430,65 450,80 L490,110 C530,120 560,140 560,180 L560,195 C560,205 550,210 540,210 L500,210 C495,225 480,235 465,235 C450,235 435,225 430,210 L170,210 C165,225 150,235 135,235 C120,235 105,225 100,210 L60,210 C50,210 40,205 40,195 Z" fill="#e5e9f0" stroke="#002A54" stroke-width="2"/>
-        <circle cx="135" cy="212" r="24" fill="#1a1a1a"/>
-        <circle cx="465" cy="212" r="24" fill="#1a1a1a"/>
+        <path class="car-outline" d="M40,180 C40,140 70,120 110,110 L150,80 C170,65 230,55 300,55 C370,55 430,65 450,80 L490,110 C530,120 560,140 560,180 L560,195 C560,205 550,210 540,210 L500,210 C495,225 480,235 465,235 C450,235 435,225 430,210 L170,210 C165,225 150,235 135,235 C120,235 105,225 100,210 L60,210 C50,210 40,205 40,195 Z" fill="#1a1f26" stroke="#E2001A" stroke-width="1.5"/>
+        <circle cx="135" cy="212" r="24" fill="#050607"/>
+        <circle cx="465" cy="212" r="24" fill="#050607"/>
         <g class="zone" data-zone="pare-chocs-avant"><path d="M40,180 C40,150 55,130 80,118 L80,190 L45,190 Z" /></g>
         <g class="zone" data-zone="capot"><path d="M110,110 L150,80 C170,65 210,58 260,56 L260,110 Z" /></g>
         <g class="zone" data-zone="pare-brise"><path d="M260,56 C295,55 330,56 340,60 L370,110 L260,110 Z" /></g>
@@ -115,7 +148,7 @@
         <div class="result-row highlight"><span>Prise en charge assurance</span><strong>100% possible</strong></div>
         <div class="result-row highlight-red"><span>Reste à charge estimé</span><strong>0,00 €</strong></div>
       </div>
-      <button class="btn btn-primary btn-block" id="validateDiagnostic">Valider mon pré-diagnostic &amp; Réserver un RDV →</button>
+      <button class="btn btn-primary btn-block" id="validateDiagnostic">Valider mon pré-diagnostic →</button>
     </div>
   </div>
 </section>
@@ -145,16 +178,16 @@
   </div>
 </div>
 
-<section class="section section-dark" id="franchise">
-  <div class="section-header reveal">
-    <span class="tag tag-light">Vos Droits — Loi Hamon 2014</span>
-    <h2>Simulateur Franchise 0 €</h2>
-    <p>Découvrez combien AD Carrosserie prend en charge pour vous.</p>
+<section class="section" id="franchise">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>VOS DROITS — LOI HAMON 2014</span>
+    <h2>Simulateur Franchise 0€</h2>
+    <p>Estimation indicative — le montant final dépend de votre contrat d'assurance. Appelez-nous pour confirmation.</p>
   </div>
 
   <div class="franchise-grid reveal">
-    <div class="franchise-slider-card">
-      <label for="franchiseRange">Montant de votre franchise assurance</label>
+    <div class="pkg-card wide">
+      <h4>Montant de votre franchise assurance</h4>
       <input type="range" id="franchiseRange" min="0" max="600" step="10" value="150">
       <div class="franchise-amount" id="franchiseAmountDisplay">150 €</div>
       <div class="franchise-outputs">
@@ -164,27 +197,25 @@
       </div>
     </div>
 
-    <div class="rights-accordion">
-      <div class="accordion-item">
-        <button class="accordion-head">⚖️ <span>Vous choisissez librement votre réparateur</span><span class="chevron">▾</span></button>
-        <div class="accordion-body"><p>La Loi Hamon (2014) vous garantit le libre choix de votre carrossier, sans que votre assureur puisse vous l'imposer.</p></div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-head">🛡️ <span>Vos garanties d'assurance restent intactes</span><span class="chevron">▾</span></button>
-        <div class="accordion-body"><p>Choisir AD Carrosserie ne réduit en rien votre prise en charge assurance ni vos garanties contractuelles.</p></div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-head">📄 <span>Cession de créance simplifiée</span><span class="chevron">▾</span></button>
-        <div class="accordion-body"><p>Signez votre cession de créance numériquement, sans avance de frais ni paperasse.</p>
-        <button class="btn btn-outline-light btn-sm" id="downloadCession">📥 Aperçu du document</button></div>
-      </div>
+    <div class="pkg-card">
+      <h4>⚖️ Libre choix du réparateur</h4>
+      <p>La Loi Hamon (2014) vous garantit le libre choix de votre carrossier, sans que votre assureur puisse vous l'imposer.</p>
+    </div>
+    <div class="pkg-card">
+      <h4>🛡️ Garanties intactes</h4>
+      <p>Choisir AD Carrosserie ne réduit en rien votre prise en charge assurance ni vos garanties contractuelles.</p>
+    </div>
+    <div class="pkg-card">
+      <h4>📄 Cession de créance</h4>
+      <p>Signez votre cession de créance numériquement, sans avance de frais ni paperasse.</p>
+      <button class="btn btn-outline btn-sm" id="downloadCession">📥 Aperçu du document</button>
     </div>
   </div>
 </section>
 
 <section class="section" id="realisations">
-  <div class="section-header reveal">
-    <span class="tag">Nos Réalisations</span>
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>NOS RÉALISATIONS</span>
     <h2>Avant / Après</h2>
   </div>
   <div class="tabs reveal" id="baTabs">
@@ -201,36 +232,54 @@
   </div>
 </section>
 
-<section class="section section-light" id="fleet">
-  <div class="section-header reveal">
-    <span class="tag">0€ Extra</span>
+<section class="section" id="fleet">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>0€ SUPPLÉMENT</span>
     <h2>Véhicule de Prêt Disponible</h2>
   </div>
   <div class="fleet-grid reveal">
-    <div class="fleet-card">
+    <div class="pkg-card">
       <div class="fleet-status">🟢 Disponible aujourd'hui</div>
       <h4>Peugeot 208</h4>
-      <ul><li>Clim</li><li>Bluetooth</li><li>Intérieur soigné</li><li>0€ supplément</li></ul>
-      <button class="btn btn-outline-navy btn-sm select-vehicle" data-car="Peugeot 208">Sélectionner ce véhicule</button>
+      <ul class="pkg-list"><li>Clim</li><li>Bluetooth</li><li>Intérieur soigné</li><li>0€ supplément</li></ul>
+      <button class="btn btn-outline btn-sm select-vehicle" data-car="Peugeot 208">Sélectionner ce véhicule</button>
     </div>
-    <div class="fleet-card">
+    <div class="pkg-card">
       <div class="fleet-status">🟢 Disponible aujourd'hui</div>
       <h4>Renault Clio</h4>
-      <ul><li>Clim</li><li>Bluetooth</li><li>Intérieur soigné</li><li>0€ supplément</li></ul>
-      <button class="btn btn-outline-navy btn-sm select-vehicle" data-car="Renault Clio">Sélectionner ce véhicule</button>
+      <ul class="pkg-list"><li>Clim</li><li>Bluetooth</li><li>Intérieur soigné</li><li>0€ supplément</li></ul>
+      <button class="btn btn-outline btn-sm select-vehicle" data-car="Renault Clio">Sélectionner ce véhicule</button>
     </div>
-    <div class="fleet-card">
-      <div class="fleet-status">🟡 Disponible demain</div>
+    <div class="pkg-card">
+      <div class="fleet-status status-amber">🟡 Disponible demain</div>
       <h4>Utilitaire Compact</h4>
-      <ul><li>Volume utile</li><li>Bluetooth</li><li>0€ supplément</li></ul>
-      <button class="btn btn-outline-navy btn-sm select-vehicle" data-car="Utilitaire Compact">Sélectionner ce véhicule</button>
+      <ul class="pkg-list"><li>Volume utile</li><li>Bluetooth</li><li>0€ supplément</li></ul>
+      <button class="btn btn-outline btn-sm select-vehicle" data-car="Utilitaire Compact">Sélectionner ce véhicule</button>
     </div>
   </div>
 </section>
 
-<section class="section section-dark">
-  <div class="section-header reveal">
-    <span class="tag tag-light">Portail Client</span>
+<section class="brand-story">
+  <div class="brand-story-inner">
+    <div class="brand-story-text reveal">
+      <span class="eyebrow"><span class="eyebrow-bar"></span>NOTRE ENGAGEMENT</span>
+      <h2>Le Métier dans le Sang</h2>
+      <p>AD Carrosserie fait partie du <strong>Réseau National AD</strong> — indépendant, agréé toutes compagnies d'assurance, garanti à vie sur peinture et main d'œuvre.</p>
+      <p>Chaque réparation est traitée avec la rigueur d'un atelier de compétition : diagnostic photo, cession de créance simplifiée, véhicule de prêt gratuit, et un reste à charge visé à 0,00 €.</p>
+      <div class="brand-stats">
+        <div class="brand-stat"><strong>Réseau AD</strong><small>Réparation indépendante</small></div>
+        <div class="brand-stat"><strong>Garantie à Vie</strong><small>Peinture &amp; main d'œuvre</small></div>
+      </div>
+    </div>
+    <div class="brand-story-img reveal">
+      <img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=900&q=60" alt="Atelier AD Carrosserie">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tracker-section">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>PORTAIL CLIENT</span>
     <h2>Suivez vos Travaux en Direct</h2>
   </div>
   <div class="tracker-search reveal">
@@ -246,16 +295,71 @@
   </div>
 </section>
 
+<section class="section" id="faq">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>QUESTIONS FRÉQUENTES</span>
+    <h2>FAQ</h2>
+  </div>
+  <div class="rights-accordion reveal">
+    <div class="accordion-item">
+      <button class="accordion-head"><span>Dois-je avancer les frais de réparation ?</span><span class="chevron">▾</span></button>
+      <div class="accordion-body"><p>Non — dans le cadre d'une prise en charge assurance, nous établissons une cession de créance et visons un reste à charge de 0,00 €.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-head"><span>Puis-je choisir AD Carrosserie même si mon assureur me recommande un autre garage ?</span><span class="chevron">▾</span></button>
+      <div class="accordion-body"><p>Oui. La Loi Hamon (2014) vous garantit le libre choix de votre réparateur, sans perte de garantie.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-head"><span>La peinture est-elle garantie ?</span><span class="chevron">▾</span></button>
+      <div class="accordion-body"><p>Oui, garantie à vie sur la peinture et la main d'œuvre, dans le cadre du Réseau National AD.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-head"><span>Ai-je droit à un véhicule de prêt ?</span><span class="chevron">▾</span></button>
+      <div class="accordion-body"><p>Un véhicule de prêt gratuit est disponible selon disponibilité — sélectionnez-le directement dans le formulaire de RDV.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>AVIS &amp; RÉSEAU</span>
+    <h2>Ils Nous Font Confiance</h2>
+  </div>
+  <div class="reviews-carousel reveal" id="reviewsCarousel">
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Prise en charge parfaite, 0€ à avancer, véhicule de prêt propre. Rien à dire !"</p><span>— Julien M.</span></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Réparation impeccable sur ma Peugeot 208, garantie à vie très rassurante."</p><span>— Sophie L.</span></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Équipe réactive, devis en photo en 10 minutes via WhatsApp."</p><span>— Karim B.</span></div>
+  </div>
+  <p class="reviews-link"><a href="https://www.google.com/maps" target="_blank" rel="noopener">Voir nos avis sur Google Maps →</a></p>
+
+  <div class="badges-grid reveal">
+    <div class="net-badge">🏅 Réseau National AD<br><small>Réparation Indépendante</small></div>
+    <div class="net-badge">🎨 Garantie Peinture &amp; Main d'Œuvre<br><small>À vie</small></div>
+    <div class="net-badge">✅ Agréé Toutes Compagnies<br><small>d'Assurance</small></div>
+    <div class="net-badge">💳 Paiement Fractionné<br><small>3x / 4x par carte</small></div>
+  </div>
+</section>
+
+<section class="emergency-banner">
+  <div class="emergency-content">
+    <h3>En panne ou accidenté sur la route ?</h3>
+    <div class="emergency-actions">
+      <a href="tel:+330000000001" class="btn btn-emergency">🚨 Assistance &amp; Dépannage Immédiat</a>
+      <button class="btn btn-outline" id="geoBtn">📍 Envoyer ma position via WhatsApp</button>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="rdv">
-  <div class="section-header reveal">
-    <span class="tag">RDV En Ligne</span>
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="eyebrow-bar"></span>RDV EN LIGNE</span>
     <h2>Votre Demande de Devis</h2>
   </div>
 
   <div class="recovery-bar" id="recoveryBar" hidden>
     <span>💾 Reprendre votre demande là où vous l'avez laissée ?</span>
     <button class="btn btn-sm btn-primary" id="resumeYes">Oui, reprendre</button>
-    <button class="btn btn-sm btn-outline-navy" id="resumeNo">Non, recommencer</button>
+    <button class="btn btn-sm btn-outline" id="resumeNo">Non, recommencer</button>
   </div>
 
   <div class="form-card reveal">
@@ -285,7 +389,7 @@
           <input type="file" id="formFileInput" accept="image/*" multiple hidden>
         </div>
         <div class="preview-grid" id="formPreviewGrid"></div>
-        <div class="form-nav"><button type="button" class="btn btn-outline-navy prev-step">← Précédent</button><button type="button" class="btn btn-primary next-step">Suivant →</button></div>
+        <div class="form-nav"><button type="button" class="btn btn-outline prev-step">← Précédent</button><button type="button" class="btn btn-primary next-step">Suivant →</button></div>
       </div>
 
       <div class="form-step" data-step="3">
@@ -297,7 +401,7 @@
             <option>Peugeot 208</option><option>Renault Clio</option><option>Utilitaire Compact</option>
           </select>
         </div>
-        <div class="form-nav"><button type="button" class="btn btn-outline-navy prev-step">← Précédent</button><button type="button" class="btn btn-primary next-step">Suivant →</button></div>
+        <div class="form-nav"><button type="button" class="btn btn-outline prev-step">← Précédent</button><button type="button" class="btn btn-primary next-step">Suivant →</button></div>
       </div>
 
       <div class="form-step" data-step="4">
@@ -305,39 +409,9 @@
         <div class="form-row"><input type="text" id="nameInput" placeholder="Nom complet" required></div>
         <div class="form-row"><input type="tel" id="phoneInput" placeholder="Téléphone" required><input type="email" id="emailInput" placeholder="Email"></div>
         <div class="form-row"><input type="text" id="insurerInput" placeholder="Nom de votre assureur"></div>
-        <div class="form-nav"><button type="button" class="btn btn-outline-navy prev-step">← Précédent</button><button type="submit" class="btn btn-primary">Envoyer ma Demande ✔</button></div>
+        <div class="form-nav"><button type="button" class="btn btn-outline prev-step">← Précédent</button><button type="submit" class="btn btn-primary">Envoyer ma Demande ✔</button></div>
       </div>
     </form>
-  </div>
-</section>
-
-<section class="section section-light">
-  <div class="section-header reveal">
-    <span class="tag">Ils nous font confiance</span>
-    <h2>Avis Google &amp; Réseau AD</h2>
-  </div>
-  <div class="reviews-carousel reveal" id="reviewsCarousel">
-    <div class="review-card"><div class="stars">★★★★★</div><p>"Prise en charge parfaite, 0€ à avancer, véhicule de prêt propre. Rien à dire !"</p><span>— Julien M.</span></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p>"Réparation impeccable sur ma Peugeot 208, garantie à vie très rassurante."</p><span>— Sophie L.</span></div>
-    <div class="review-card"><div class="stars">★★★★★</div><p>"Équipe réactive, devis en photo en 10 minutes via WhatsApp."</p><span>— Karim B.</span></div>
-  </div>
-  <p class="reviews-link"><a href="https://www.google.com/maps" target="_blank" rel="noopener">Voir tous nos 250+ avis sur Google Maps →</a></p>
-
-  <div class="badges-grid reveal">
-    <div class="net-badge">🏅 Réseau National AD<br><small>N°1 de la Réparation Indépendante</small></div>
-    <div class="net-badge">🎨 Garantie Peinture &amp; Main d'Œuvre<br><small>À vie</small></div>
-    <div class="net-badge">✅ Agréé Toutes Compagnies<br><small>d'Assurance</small></div>
-    <div class="net-badge">💳 Paiement Fractionné<br><small>3x / 4x par carte</small></div>
-  </div>
-</section>
-
-<section class="emergency-banner">
-  <div class="emergency-content">
-    <h3>🚨 En panne ou accidenté sur la route ?</h3>
-    <div class="emergency-actions">
-      <a href="tel:+330000000001" class="btn btn-emergency">🚨 Assistance &amp; Dépannage Immédiat</a>
-      <button class="btn btn-outline-light" id="geoBtn">📍 Envoyer ma position via WhatsApp</button>
-    </div>
   </div>
 </section>
 
@@ -361,7 +435,7 @@
     <div>
       <h4>Nous trouver</h4>
       <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=6.68%2C43.61%2C6.72%2C43.63&layer=mapnik" loading="lazy"></iframe>
-      <a class="btn btn-outline-light btn-sm" href="https://www.google.com/maps" target="_blank" rel="noopener">Itinéraire GPS →</a>
+      <a class="btn btn-outline btn-sm" href="https://www.google.com/maps" target="_blank" rel="noopener">Itinéraire GPS →</a>
     </div>
   </div>
   <div class="footer-bottom">© 2026 AD Carrosserie — Réseau National AD. Tous droits réservés.</div>
