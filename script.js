@@ -73,10 +73,46 @@ $$('.gallery-filters').forEach(filterBar=>{
   });
 });
 
+(function promoPopup(){
+  const SESSION_KEY = 'ad_promo_seen';
+  const overlay = document.createElement('div');
+  overlay.className = 'promo-popup-overlay';
+  overlay.id = 'promoOverlay';
+  overlay.innerHTML = `
+    <div class="promo-popup">
+      <button class="promo-popup-close" id="promoClose" aria-label="Fermer">X</button>
+      <div class="promo-popup-body">
+        <span class="tag">Promotion du mois</span>
+        <h3>[A VALIDER PAR LE GARAGE]</h3>
+        <p>[Titre et conditions de la promotion en cours - a renseigner par AD Carrosserie avant mise en ligne definitive.]</p>
+        <a href="devis.html" class="btn btn-primary btn-block">Demander un devis</a>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  const badge = document.createElement('button');
+  badge.className = 'promo-badge';
+  badge.id = 'promoBadge';
+  badge.textContent = 'Voir la promotion en cours';
+  document.body.appendChild(badge);
+
+  function openPromo(){ overlay.classList.add('show'); track('promo_popup_shown', {}); }
+  function closePromo(){ overlay.classList.remove('show'); badge.classList.add('show'); sessionStorage.setItem(SESSION_KEY, '1'); }
+
+  if(!sessionStorage.getItem(SESSION_KEY)){
+    setTimeout(openPromo, 1800);
+  } else {
+    badge.classList.add('show');
+  }
+  $('#promoClose', overlay).addEventListener('click', closePromo);
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) closePromo(); });
+  badge.addEventListener('click', ()=>{ badge.classList.remove('show'); openPromo(); });
+})();
+
 const devisForm = $('#devisForm');
 if(devisForm){
   const STORAGE_KEY = 'ad_devis_v1';
-  let state = { make:'', model:'', plate:'', damage:[], photos:[], fullName:'', phone:'', email:'', message:'', step:1 };
+  let state = { make:'', model:'', plate:'', damage:[], zones:[], photos:[], fullName:'', phone:'', email:'', message:'', courtesy:'', step:1 };
   const totalSteps = 6;
 
   function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify({...state, photos: state.photos.map(p=>p.name)})); }catch(e){} }
@@ -137,40 +173,104 @@ if(devisForm){
     });
   }
 
+  const zoneMapper = $('#zoneMapper');
+  if(zoneMapper){
+    $$('.zone-btn', zoneMapper).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        btn.classList.toggle('selected');
+        state.zones = $$('.zone-btn.selected', zoneMapper).map(b=>b.dataset.zone);
+      });
+      btn.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); btn.click(); } });
+    });
+  }
+
+  const courtesyGroup = $('#courtesyGroup');
+  if(courtesyGroup){
+    $$('.courtesy-opt', courtesyGroup).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        $$('.courtesy-opt', courtesyGroup).forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.courtesy = btn.dataset.value;
+        const note = $('#courtesyNote');
+        note.classList.toggle('show', state.courtesy === 'oui');
+      });
+    });
+  }
+
   const qDropzone = $('#qDropzone'); const qFileInput = $('#qFileInput'); const qPreviewGrid = $('#qPreviewGrid');
   qDropzone?.addEventListener('click', ()=> qFileInput.click());
   qDropzone?.addEventListener('dragover', e=>{ e.preventDefault(); qDropzone.classList.add('dragover'); });
   qDropzone?.addEventListener('dragleave', ()=> qDropzone.classList.remove('dragover'));
   qDropzone?.addEventListener('drop', e=>{ e.preventDefault(); qDropzone.classList.remove('dragover'); handlePhotos(e.dataTransfer.files); });
   qFileInput?.addEventListener('change', ()=> handlePhotos(qFileInput.files));
+
+  function compressImage(file, maxDim=1600, quality=0.75){
+    return new Promise((resolve, reject)=>{
+      const reader = new FileReader();
+      reader.onload = e=>{
+        const img = new Image();
+        img.onload = ()=>{
+          let { width, height } = img;
+          if(width > maxDim || height > maxDim){
+            const ratio = Math.min(maxDim/width, maxDim/height);
+            width = Math.round(width*ratio); height = Math.round(height*ratio);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width; canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
   function handlePhotos(files){
     const remaining = 6 - state.photos.length;
     Array.from(files).slice(0, remaining).forEach(file=>{
-      if(!file.type.startsWith('image/')) return;
-      if(file.size > 8*1024*1024) return;
-      const reader = new FileReader();
-      reader.onload = e=>{ state.photos.push({name:file.name, dataUrl:e.target.result}); renderPreviews(); };
-      reader.readAsDataURL(file);
+      if(!file.type.startsWith('image/')){ showToast("Ce fichier n'est pas une image."); return; }
+      if(file.size > 15*1024*1024){ showToast('Cette photo est trop volumineuse.'); return; }
+      const entry = {name:file.name, dataUrl:null, status:'loading'};
+      state.photos.push(entry);
+      renderPreviews();
+      compressImage(file).then(dataUrl=>{
+        entry.dataUrl = dataUrl; entry.status = 'success';
+        renderPreviews();
+      }).catch(()=>{
+        entry.status = 'error';
+        showToast("Cette photo n'a pas pu etre ajoutee. Reessayez.");
+        renderPreviews();
+      });
     });
   }
   function renderPreviews(){
     if(!qPreviewGrid) return;
-    qPreviewGrid.innerHTML = state.photos.map((p,i)=>`<div class="qpreview-item"><img src="${p.dataUrl}" alt="Photo ${i+1}"><button type="button" data-idx="${i}">X</button></div>`).join('');
+    qPreviewGrid.innerHTML = state.photos.map((p,i)=>{
+      if(p.status === 'loading') return `<div class="qpreview-item"><div class="qp-progress" style="width:70%;"></div></div>`;
+      if(p.status === 'error') return `<div class="qpreview-item" style="display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--red);text-align:center;">Erreur<button type="button" data-idx="${i}">X</button></div>`;
+      return `<div class="qpreview-item"><img src="${p.dataUrl}" alt="Photo ${i+1}"><button type="button" data-idx="${i}">X</button></div>`;
+    }).join('');
     $$('.qpreview-item button', qPreviewGrid).forEach(btn=>{
       btn.addEventListener('click', ()=>{ state.photos.splice(parseInt(btn.dataset.idx),1); renderPreviews(); });
     });
   }
 
   const damageLabels = {accident:'Accident', rayure:'Rayure', bosse:'Bosse', 'pare-chocs':'Pare-chocs', peinture:'Peinture', vitrage:'Vitrage', mecanique:'Mecanique', autre:'Autre'};
+  const zoneLabels = {avant:'Avant', arriere:'Arriere', gauche:'Cote gauche', droit:'Cote droit', capot:'Capot', toit:'Toit', portieres:'Portieres', 'pare-chocs':'Pare-chocs', ailes:'Ailes', vitres:'Vitres', autre:'Autre'};
+  const courtesyLabels = {oui:'Oui', non:'Non', 'je-ne-sais-pas':'Je ne sais pas encore'};
 
   function renderSummary(){
     const c = $('#summaryContainer');
     if(!c) return;
     c.innerHTML = `
       <div class="summary-block"><div><div class="label">Vehicule</div><div class="value">${state.make} ${state.model}${state.plate ? ' - '+state.plate : ''}</div></div><button type="button" class="summary-edit" data-goto="1">Modifier</button></div>
-      <div class="summary-block"><div><div class="label">Dommage</div><div class="value">${state.damage.map(d=>damageLabels[d]||d).join(', ') || 'Non precise'}</div></div><button type="button" class="summary-edit" data-goto="2">Modifier</button></div>
-      <div class="summary-block"><div><div class="label">Photos</div><div class="value">${state.photos.length} photo(s)</div></div><button type="button" class="summary-edit" data-goto="3">Modifier</button></div>
-      <div class="summary-block"><div><div class="label">Coordonnees</div><div class="value">${state.fullName} - ${state.phone}${state.email ? ' - '+state.email : ''}</div></div><button type="button" class="summary-edit" data-goto="4">Modifier</button></div>
+      <div class="summary-block"><div><div class="label">Dommage</div><div class="value">${state.damage.map(d=>damageLabels[d]||d).join(', ') || 'Non precise'}${state.zones.length ? ' - Zones: '+state.zones.map(z=>zoneLabels[z]||z).join(', ') : ''}</div></div><button type="button" class="summary-edit" data-goto="2">Modifier</button></div>
+      <div class="summary-block"><div><div class="label">Photos</div><div class="value">${state.photos.filter(p=>p.status==='success').length} photo(s)</div></div><button type="button" class="summary-edit" data-goto="3">Modifier</button></div>
+      <div class="summary-block"><div><div class="label">Coordonnees</div><div class="value">${state.fullName} - ${state.phone}${state.email ? ' - '+state.email : ''}${state.courtesy ? ' - Vehicule de courtoisie: '+(courtesyLabels[state.courtesy]||state.courtesy) : ''}</div></div><button type="button" class="summary-edit" data-goto="4">Modifier</button></div>
     `;
     $$('.summary-edit', c).forEach(btn=> btn.addEventListener('click', ()=> setStep(parseInt(btn.dataset.goto))));
   }
@@ -211,7 +311,7 @@ if(devisForm){
     submitBtn.textContent = 'Envoi en cours...';
     submitBtn.disabled = true;
     const waText = encodeURIComponent(
-      `Bonjour AD Carrosserie, je souhaite un devis.\nVehicule: ${state.make} ${state.model} ${state.plate?'('+state.plate+')':''}\nDommage: ${state.damage.map(d=>damageLabels[d]||d).join(', ')}\nNom: ${state.fullName}\nTelephone: ${state.phone}\nEmail: ${state.email}\nMessage: ${state.message}`
+      `Bonjour AD Carrosserie, je souhaite un devis.\nVehicule: ${state.make} ${state.model} ${state.plate?'('+state.plate+')':''}\nDommage: ${state.damage.map(d=>damageLabels[d]||d).join(', ')}\nZones: ${state.zones.map(z=>zoneLabels[z]||z).join(', ')}\nVehicule de courtoisie: ${courtesyLabels[state.courtesy]||'Non precise'}\nNom: ${state.fullName}\nTelephone: ${state.phone}\nEmail: ${state.email}\nMessage: ${state.message}`
     );
     setTimeout(()=>{
       localStorage.removeItem(STORAGE_KEY);
